@@ -58,6 +58,17 @@ git push origin master
 
 ```
 
+
+
+### VS Code에서 두 개의 저장소를 한 번에 열기
+
+1. VS Code에서 `File > Open Folder`를 선택하여 `/your-projects-folder`를 엽니다.
+2. `File > Add Folder to Workspace`를 선택하여 `existing-repo`와 `private-repo`를 워크스페이스에 추가합니다.
+
+이렇게 하면 VS Code 내에서 두 저장소를 동시에 열어 작업할 수 있습니다.
+
+
+
 ## 이미지 삽입 방법
 
 1. typora에 이미지 삽입 (셋팅해놓기로는 Local 폴더에 image아래에 저장되게 해놓음)
