@@ -43,18 +43,8 @@ typora-copy-images-to: ../images/2024-07-13
 
 - 1주마다 성취감을 쌓아나가기.
 
-![timetable-example22](/Users/peter/Github/kwnote.github.io/images/2024-07-13/timetable-example22-0881443.png)
+![timetable-example22]({{site.url}}/images/2024-07-13/timetable-example22-0881443.png)
 
 ## 내 삶에 적용하기
 
-ㄴㅇㄹㄴㅇㄹ
-
-ㄴㅇㄹㄴㅇㄹ
-
-ㄴㅇㄹㄴㅇㄹㄴㅇ
-
-ㄴㅇㄹㄴㅇ
-
-ㄴㅇㄹㄴㅇㄹ
-
-여기서부터 본문을 작성합니다. 이 글에서는 미래의 성공 전략에 대해 논의할 것입니다.
+생각해보자~
