@@ -1,7 +1,7 @@
 ---
 title: "삶의 정리정돈을 위한 고군분투 1편"
 date: 2024-07-13
-layout: post
+layout: single
 comments: true
 published: true
 categories: [자기계발]
@@ -43,13 +43,9 @@ typora-copy-images-to: ../images/2024-07-13
 
 - 1주마다 성취감을 쌓아나가기.
 
-<img src="/Users/peter/Library/CloudStorage/OneDrive-Personal/03_LEVELUP/images/2024-07-13/image-20240713160241858.png" alt="image-20240713160241858" style="zoom:67%;" />
+![timetable-example22](/Users/peter/Github/kwnote.github.io/images/2024-07-13/timetable-example22-0881443.png)
 
-
-
-
-
-## ㄴㅇㄹㄴㅇ
+## 내 삶에 적용하기
 
 ㄴㅇㄹㄴㅇㄹ
 
