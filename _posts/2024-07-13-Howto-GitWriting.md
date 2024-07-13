@@ -12,9 +12,33 @@ tags: [깃허브]
 
 # 깃허브 작동방식과 내가 매일할일
 
-Typora는 단순 에디터. md 파일을 수정할 수 있다.
+- **Local files** --- **Github files**
 
-VS code를 통해서 깃허브와 소통할 수 있다.
+- 연동을 잘 시키는 것이 중요하다. 보통은 Local을 수정하기 때문에, Github에 그 때 그 때 Push해야한다. 
+
+
+
+Typora는 단순 에디터. md 파일을 수정할 수 있다. VS code를 통해서 깃허브와 소통할 수 있다.
+
+### 깃에 올리는 방법
+
+``` python
+# 현재 상태 확인
+git status
+
+# 변경된 파일 스테이징
+git add .
+
+# 변경 사항 커밋
+git commit -m "Add new blog post"
+
+# 변경 사항 푸시
+git push origin master
+```
+
+
+
+### 깃에서 내려받는 경우
 
 ```python
     # 1. 터미널 열기 (VS Code 내에서)
@@ -40,10 +64,20 @@ VS code를 통해서 깃허브와 소통할 수 있다.
 
 2. VS code를 통해서 terminal에서 commit과 push를 한다.
 
-3. Git website에서 post를 수정한다. 앞쪽을 {{site.url}}로 수정해야함
+3. **Git website에서 post를 수정한다. 앞쪽을 {{site.url}}로 수정해야함**. 검색 등을 통해서 한방에 샥~
 
 ```python
-![checkimage]({{site.url}}/images/2024-07-12-first/checkimage.png)
+# 예시
+# 기존
+![timetable-example22](/Users/peter/github/kwnote.github.io/images/2024-07-12-first/timetable-example22.png)
+
+# 변경후
+![timetable-example22]({{site.url}}/images/2024-07-12-first/timetable-example22.png)
+
+# 결국엔 이걸 치환하는 것이다.
+# /Users/peter/github/kwnote.github.io 
+# {{site.url}}
+
 ```
 
 ## 단순꿀팁
