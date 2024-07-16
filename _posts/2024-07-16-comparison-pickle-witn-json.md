@@ -1,5 +1,5 @@
 ---
-title: "딕셔너리의 저장방법=JSON과 바이너리 "
+title: "파이쎤 딕셔너리의 저장방법 pickle vs JSON"
 date: 2024-07-16
 layout: single
 comments: true
