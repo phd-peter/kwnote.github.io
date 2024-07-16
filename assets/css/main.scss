@@ -6,11 +6,9 @@ search: false
 @charset "utf-8";
 
 /* 메인 글자체 변경 */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@343&display=swap');   // 조금얇은 Noto Sans KR 폰트 불러오기 (regular = 400)
-/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');  // Noto Sans KR 폰트 불러오기 Google Fonts
-/* @import url('https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap'); /* // Gothic A1 폰트 사용하는 경우임
-
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@343&display=swap'); // 조금 얇은 Noto Sans KR 폰트 불러오기 (regular = 400)
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap'); */  // Noto Sans KR 폰트 불러오기 Google Fonts
+/* @import url('https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap'); */ // Gothic A1 폰트 사용하는 경우임 
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
