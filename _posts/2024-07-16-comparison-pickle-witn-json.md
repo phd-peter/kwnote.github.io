@@ -4,7 +4,7 @@ date: 2024-07-16
 layout: single
 comments: true
 published: true
-categories: [파이썬]
+categories: [python]
 tags:
 ---
 

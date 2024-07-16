@@ -4,7 +4,7 @@ date: 2024-07-13
 layout: single
 comments: true
 published: true
-categories: [자기계발]
+categories: [growth]
 tags: [정리정돈, GTD, 노션]
 typora-copy-images-to: ../images/2024-07-13
 
