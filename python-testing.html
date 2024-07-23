@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Quest: Python Adventure</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #problem-container {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Code Quest: Python Adventure</h1>
+    <p>Click the button below to get a random problem:</p>
+    <button onclick="showRandomProblem()">Get Problem</button>
+    <button onclick="showSolution()" id="solution-button" style="display:none;">Show Solution</button>
+    <div id="problem-container"></div>
+
+
+
+    <!-- //
+    Level 1: Variable Valley
+
+    Concepts: Variables, data types, and basic arithmetic.
+    Objective: Players must use variables to solve puzzles that restore order to Variable Valley.
+    Level 2: Loop District
+
+    Concepts: For loops, while loops, and loop control.
+    Objective: The player helps NPCs stuck in a time loop by using loops to break the cycle.
+    Level 3: Function Forest
+
+    Concepts: Functions, parameters, and return values.
+    Objective: The player navigates through a forest maze by defining and calling functions to clear paths.
+    Level 4: Data Structure Docks
+
+    Concepts: Lists, dictionaries, and tuples.
+    Objective: Players organize and manage data to fix corrupted shipment logs at the docks.
+    Level 5: Conditional Canyon
+
+    Concepts: If statements, logical operators, and conditionals.
+    Objective: The player solves branching path puzzles using conditionals to reach the canyon's exit.
+    Final Level: The Core
+
+    Concepts: Integrating all learned concepts.
+    Objective: The player faces a series of complex challenges that require the use of all previous knowledge to fix the central AI and save the city.
+    // -->
+
+    
+    <script>
+        const problems = [
+            // Level 1 Problems
+            {
+                level: 1, problem: `Objective: Store your age in a variable and print it.<br><code>age =  # Fix the code<br>print("Your age is " + )  # Fix the code</code>`,
+                solution: `<code>age = input("Enter your age: ")<br>print("Your age is " + age)</code>`
+            },
+            {
+                level: 1, problem: `Objective: Store the names of two friends and print a message.<br><code>friend1 = input("Enter the name of your first friend: ")<br>friend2 =  # Fix the code<br>print("Your friends are " + friend1 + " and " + )  # Fix the code</code>`,
+                solution: `<code>friend2 = input("Enter the name of your second friend: ")<br>print("Your friends are " + friend1 + " and " + friend2)</code>`
+            },
+            {
+                level: 1, problem: `Objective: Store a number in a variable and print its double.<br><code>number = int(input("Enter a number: "))<br>double =  # Fix the code<br>print("Double of your number is " + )  # Fix the code</code>`,
+                solution: `<code>double = number * 2<br>print("Double of your number is " + str(double))</code>`
+            },
+            {
+                level: 1, problem: `Objective: Store your favorite color and print a message.<br><code>color = input("Enter your favorite color: ")<br>print("Your favorite color is " )  # Fix the code</code>`,
+                solution: `<code>print("Your favorite color is " + color)</code>`
+            },
+            {
+                level: 1, problem: `Objective: Store your city and print a message.<br><code>city = input("Enter your city: ")<br>print("You live in " )  # Fix the code</code>`,
+                solution: `<code>print("You live in " + city)</code>`
+            },
+            {
+                level: 1, problem: `Objective: Store two numbers and print their sum.<br><code>num1 = int(input("Enter the first number: "))<br>num2 = int(input("Enter the second number: "))<br>sum =  # Fix the code<br>print("The sum is " + )  # Fix the code</code>`,
+                solution: `<code>sum = num1 + num2<br>print("The sum is " + str(sum))</code>`
+            },
+            {
+                level: 1, problem: `Objective: Store a string and print its length.<br><code>string = input("Enter a string: ")<br>length =  # Fix the code<br>print("The length of the string is " + )  # Fix the code</code>`,
+                solution: `<code>length = len(string)<br>print("The length of the string is " + str(length))</code>`
+            },
+            {
+                level: 1, problem: `Objective: Store your birth year and calculate your age.<br><code>birth_year = int(input("Enter your birth year: "))<br>current_year = 2024<br>age =  # Fix the code<br>print("Your age is " + )  # Fix the code</code>`,
+                solution: `<code>age = current_year - birth_year<br>print("Your age is " + str(age))</code>`
+            },
+            {
+                level: 1, problem: `Objective: Store a temperature in Celsius and convert it to Fahrenheit.<br><code>celsius = float(input("Enter temperature in Celsius: "))<br>fahrenheit =  # Fix the code<br>print("Temperature in Fahrenheit is " + )  # Fix the code</code>`,
+                solution: `<code>fahrenheit = (celsius * 9/5) + 32<br>print("Temperature in Fahrenheit is " + str(fahrenheit))</code>`
+            },
+            {
+                level: 1, problem: `Objective: Store two numbers and print their average.<br><code>num1 = float(input("Enter the first number: "))<br>num2 = float(input("Enter the second number: "))<br>average =  # Fix the code<br>print("The average is " + )  # Fix the code</code>`,
+                solution: `<code>average = (num1 + num2) / 2<br>print("The average is " + str(average))</code>`
+            },
+            // Level 2 Problems
+            {
+                level: 2, problem: `Objective: Print numbers from 1 to 10.<br><code>for i in range(  ):<br>    print(i)  # Fix the code</code>`,
+                solution: `<code>for i in range(1, 11):<br>    print(i)</code>`
+            },
+            {
+                level: 2, problem: `Objective: Print even numbers from 2 to 20.<br><code>for i in range(  ):<br>    print(i)  # Fix the code</code>`,
+                solution: `<code>for i in range(2, 21, 2):<br>    print(i)</code>`
+            },
+            {
+                level: 2, problem: `Objective: Print the first 10 multiples of 3.<br><code>for i in range(  ):<br>    print(i)  # Fix the code</code>`,
+                solution: `<code>for i in range(3, 31, 3):<br>    print(i)</code>`
+            },
+            {
+                level: 2, problem: `Objective: Print numbers from 10 to 1 in reverse.<br><code>for i in range(  ):<br>    print(i)  # Fix the code</code>`,
+                solution: `<code>for i in range(10, 0, -1):<br>    print(i)</code>`
+            },
+            {
+                level: 2, problem: `Objective: Print the squares of numbers from 1 to 5.<br><code>for i in range(  ):<br>    print( )  # Fix the code</code>`,
+                solution: `<code>for i in range(1, 6):<br>    print(i ** 2)</code>`
+            },
+            {
+                level: 2, problem: `Objective: Print each character in a string.<br><code>string = input("Enter a string: ")<br>for char in :<br>    print(char)  # Fix the code</code>`,
+                solution: `<code>for char in string:<br>    print(char)</code>`
+            },
+            {
+                level: 2, problem: `Objective: Print the sum of numbers from 1 to 10.<br><code>sum = 0<br>for i in range(  ):<br>    sum += i<br>print("The sum is " + str(sum))  # Fix the code</code>`,
+                solution: `<code>for i in range(1, 11):<br>    sum += i<br>print("The sum is " + str(sum))</code>`
+            },
+            {
+                level: 2, problem: `Objective: Print the factorial of 5.<br><code>factorial = 1<br>for i in range( ):<br>    factorial *= i<br>print("Factorial of 5 is " + str(factorial))  # Fix the code</code>`,
+                solution: `<code>for i in range(1, 6):<br>    factorial *= i<br>print("Factorial of 5 is " + str(factorial))</code>`
+            },
+            {
+                level: 2, problem: `Objective: Print the Fibonacci sequence up to 10 terms.<br><code>a, b = 0, 1<br>for i in range(10):<br>    print(a)<br>    a, b =  # Fix the code</code>`,
+                solution: `<code>a, b = b, a + b</code>`
+            },
+            {
+                level: 2, problem: `Objective: Print the sum of the first 5 odd numbers.<br><code>sum = 0<br>for i in range(1, 10, 2):<br>    sum += i<br>print("The sum of the first 5 odd numbers is " + str(sum))  # Fix the code</code>`,
+                solution: `<code>for i in range(1, 10, 2):<br>    sum += i<br>print("The sum of the first 5 odd numbers is " + str(sum))</code>`
+            },
+            // Level 3 Problems
+            {
+                level: 3, problem: 'Objective: Define a function that takes two numbers and returns their sum.<br><code>def add_numbers(a, b):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def add_numbers(a, b):<br>    return a + b</code>'
+            },
+            {
+                level: 3,
+                problem: 'Objective: Define a function that takes a list of numbers and returns the maximum value.<br><code>def find_max(numbers):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def find_max(numbers):<br>    return max(numbers)</code>'
+            },
+            {
+                level: 3,
+                problem: 'Objective: Define a function that takes a string and returns the string in reverse.<br><code>def reverse_string(s):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def reverse_string(s):<br>    return s[::-1]</code>'
+            },
+            {
+                level: 3,
+                problem: 'Objective: Define a function that takes a number and returns True if it is even, otherwise False.<br><code>def is_even(n):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def is_even(n):<br>    return n % 2 == 0</code>'
+            },
+            {
+                level: 3,
+                problem: 'Objective: Define a function that takes a list of numbers and returns the sum of the numbers.<br><code>def sum_list(numbers):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def sum_list(numbers):<br>    return sum(numbers)</code>'
+            },
+            {
+                level: 3,
+                problem: 'Objective: Define a function that takes a list of numbers and returns a list of the squares of those numbers.<br><code>def square_list(numbers):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def square_list(numbers):<br>    return [x ** 2 for x in numbers]</code>'
+            },
+            {
+                level: 3,
+                problem: 'Objective: Define a function that takes a string and returns the number of vowels in the string.<br><code>def count_vowels(s):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def count_vowels(s):<br>    return sum(1 for char in s if char in "aeiouAEIOU")</code>'
+            },
+            {
+                level: 3,
+                problem: 'Objective: Define a function that takes a number and returns its factorial.<br><code>def factorial(n):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def factorial(n):<br>    if n == 0:<br>        return 1<br>    else:<br>        return n * factorial(n-1)</code>'
+            },
+            {
+                level: 3,
+                problem: 'Objective: Define a function that takes a list of strings and returns a list of the strings in uppercase.<br><code>def uppercase_list(strings):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def uppercase_list(strings):<br>    return [s.upper() for s in strings]</code>'
+            },
+            {
+                level: 3,
+                problem: 'Objective: Define a function that takes a string and returns whether it is a palindrome.<br><code>def is_palindrome(s):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def is_palindrome(s):<br>    return s == s[::-1]</code>'
+            },
+            // Level 4 Problems
+            {
+                level: 4,
+                problem: 'Objective: Define a function that takes a list of numbers and returns the average.<br><code>def average(numbers):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def average(numbers):<br>    return sum(numbers) / len(numbers)</code>'
+            },
+            {
+                level: 4,
+                problem: 'Objective: Define a function that takes a list of numbers and returns the median.<br><code>def median(numbers):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def median(numbers):<br>    numbers.sort()<br>    n = len(numbers)<br>    mid = n // 2<br>    if n % 2 == 0:<br>        return (numbers[mid-1] + numbers[mid]) / 2<br>    else:<br>        return numbers[mid]</code>'
+            },
+            {
+                level: 4,
+                problem: 'Objective: Define a function that takes a list of numbers and returns the mode.<br><code>def mode(numbers):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def mode(numbers):<br>    return max(set(numbers), key = numbers.count)</code>'
+            },
+            {
+                level: 4,
+                problem: 'Objective: Define a function that takes a list of strings and returns the longest string.<br><code>def longest_string(strings):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def longest_string(strings):<br>    return max(strings, key = len)</code>'
+            },
+            {
+                level: 4,
+                problem: 'Objective: Define a function that takes a dictionary and returns the key with the highest value.<br><code>def key_with_max_value(d):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def key_with_max_value(d):<br>    return max(d, key = d.get)</code>'
+            },
+            {
+                level: 4,
+                problem: 'Objective: Define a function that takes a list of tuples and returns a list of the second elements.<br><code>def second_elements(tuples):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def second_elements(tuples):<br>    return [x[1] for x in tuples]</code>'
+            },
+            {
+                level: 4,
+                problem: 'Objective: Define a function that takes a list of numbers and returns a list with each number incremented by one.<br><code>def increment(numbers):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def increment(numbers):<br>    return [x + 1 for x in numbers]</code>'
+            },
+            {
+                level: 4,
+                problem: 'Objective: Define a function that takes a list of dictionaries and returns the dictionary with the highest value for a given key.<br><code>def dict_with_max_value(dicts, key):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def dict_with_max_value(dicts, key):<br>    return max(dicts, key=lambda d: d[key])</code>'
+            },
+            {
+                level: 4,
+                problem: 'Objective: Define a function that takes a string and returns a dictionary with the frequency of each character.<br><code>def char_frequency(s):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def char_frequency(s):<br>    freq = {}<br>    for char in s:<br>        if char in freq:<br>            freq[char] += 1<br>        else:<br>            freq[char] = 1<br>    return freq</code>'
+            },
+            {
+                level: 4,
+                problem: 'Objective: Define a function that takes a list of integers and returns the integers as a single concatenated string.<br><code>def concat_integers(numbers):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def concat_integers(numbers):<br>    return "".join(map(str, numbers))</code>'
+            },
+            // Level 5
+            {
+                level: 5,
+                problem: 'Objective: Define a function that returns the Fibonacci sequence up to a given number of terms.<br><code>def fibonacci(n):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def fibonacci(n):<br>    sequence = [0, 1]<br>    while len(sequence) < n:<br>        sequence.append(sequence[-1] + sequence[-2])<br>    return sequence</code>'
+            },
+            {
+                level: 5,
+                problem: 'Objective: Define a function that takes a list of integers and returns the prime numbers from the list.<br><code>def find_primes(numbers):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def find_primes(numbers):<br>    primes = []<br>    for num in numbers:<br>        if num > 1:<br>            for i in range(2, num):<br>                if (num % i) == 0:<br>                    break<br>            else:<br>                primes.append(num)<br>    return primes</code>'
+            },
+            {
+                level: 5,
+                problem: 'Objective: Define a function that returns the nth number in the Fibonacci sequence.<br><code>def fibonacci_nth(n):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def fibonacci_nth(n):<br>    a, b = 0, 1<br>    for _ in range(n):<br>        a, b = b, a + b<br>    return a</code>'
+            },
+            {
+                level: 5,
+                problem: 'Objective: Define a function that returns the GCD of two numbers.<br><code>def gcd(a, b):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def gcd(a, b):<br>    while b:<br>        a, b = b, a % b<br>    return a</code>'
+            },
+            {
+                level: 5,
+                problem: 'Objective: Define a function that returns the LCM of two numbers.<br><code>def lcm(a, b):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def lcm(a, b):<br>    def gcd(a, b):<br>        while b:<br>            a, b = b, a % b<br>        return a<br>    return abs(a*b) // gcd(a, b)</code>'
+            },
+            {
+                level: 5,
+                problem: 'Objective: Define a function that returns a list of unique elements from a given list.<br><code>def unique_elements(lst):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def unique_elements(lst):<br>    return list(set(lst))</code>'
+            },
+            {
+                level: 5,
+                problem: 'Objective: Define a function that returns the transpose of a given matrix.<br><code>def transpose(matrix):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def transpose(matrix):<br>    return list(map(list, zip(*matrix)))</code>'
+            },
+            {
+                level: 5,
+                problem: 'Objective: Define a function that returns the factorial of a given number using an iterative approach.<br><code>def iterative_factorial(n):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def iterative_factorial(n):<br>    result = 1<br>    for i in range(1, n+1):<br>        result *= i<br>    return result</code>'
+            },
+            {
+                level: 5,
+                problem: 'Objective: Define a function that returns the first non-repeated character in a string.<br><code>def first_non_repeated_char(s):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def first_non_repeated_char(s):<br>    from collections import Counter<br>    count = Counter(s)<br>    for char in s:<br>        if count[char] == 1:<br>            return char<br>    return None</code>'
+            },
+            {
+                level: 5,
+                problem: 'Objective: Define a function that returns a list of common elements in two given lists.<br><code>def common_elements(list1, list2):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def common_elements(list1, list2):<br>    return list(set(list1) & set(list2))</code>'
+            },
+            {
+                level: 5,
+                problem: 'Objective: Define a function that returns a list of even numbers from a given list.<br><code>def find_even_numbers(numbers):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def find_even_numbers(numbers):<br>    return [num for num in numbers if num % 2 == 0]</code>'
+            },
+            {
+                level: 5,
+                problem: 'Objective: Define a function that returns the longest word in a given sentence.<br><code>def longest_word(sentence):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def longest_word(sentence):<br>    words = sentence.split()<br>    return max(words, key=len)</code>'
+            },
+            {
+                level: 5,
+                problem: 'Objective: Define a function that returns the sum of digits of a given number.<br><code>def sum_of_digits(n):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def sum_of_digits(n):<br>    return sum(int(digit) for digit in str(n))</code>'
+            },
+            {
+                level: 5,
+                problem: 'Objective: Define a function that returns the elements that appear only once in a given list.<br><code>def single_occurrences(lst):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def single_occurrences(lst):<br>    from collections import Counter<br>    count = Counter(lst)<br>    return [element for element in lst if count[element] == 1]</code>'
+            },
+            {
+                level: 5,
+                problem: 'Objective: Define a function that returns the sum of all prime numbers up to a given number.<br><code>def sum_of_primes(n):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def sum_of_primes(n):<br>    def is_prime(x):<br>        if x < 2:<br>            return False<br>        for i in range(2, int(x**0.5) + 1):<br>            if x % i == 0:<br>                return False<br>        return True<br>    return sum(x for x in range(2, n+1) if is_prime(x))</code>'
+            },
+
+            // Level 6
+            {
+                level: 6, problem: 'Objective: Define a function that checks if a given string is a valid palindrome ignoring spaces.<br><code>def is_valid_palindrome(s):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def is_valid_palindrome(s):<br>    s = s.replace(" ", "")<br>    return s == s[::-1]</code>'
+            },
+            {
+                level: 6, problem: 'Objective: Define a function that returns all possible subsets of a given set.<br><code>def subsets(s):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def subsets(s):<br>    from itertools import chain, combinations<br>    return list(chain(*[combinations(s, r) for r in range(len(s)+1)]))</code>'
+            },
+            {
+                level: 6, problem: 'Objective: Define a function that returns the permutations of a given string.<br><code>def string_permutations(s):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def string_permutations(s):<br>    from itertools import permutations<br>    return ["".join(p) for p in permutations(s)]</code>'
+            },
+            {
+                level: 6, problem: 'Objective: Define a function that returns the power set of a given list.<br><code>def power_set(lst):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def power_set(lst):<br>    from itertools import chain, combinations<br>    return list(chain(*[combinations(lst, r) for r in range(len(lst)+1)]))</code>'
+            },
+            {
+                level: 6, problem: 'Objective: Define a function that returns the Cartesian product of two lists.<br><code>def cartesian_product(lst1, lst2):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def cartesian_product(lst1, lst2):<br>    from itertools import product<br>    return list(product(lst1, lst2))</code>'
+            },
+            {
+                level: 6, problem: 'Objective: Define a function that returns the number of unique paths in a grid of size m x n.<br><code>def unique_paths(m, n):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def unique_paths(m, n):<br>    dp = [[1]*n for _ in range(m)]<br>    for i in range(1, m):<br>        for j in range(1, n):<br>            dp[i][j] = dp[i-1][j] + dp[i][j-1]<br>    return dp[-1][-1]</code>'
+            },
+            {
+                level: 6, problem: 'Objective: Define a function that returns the minimum number of coins needed to make a given amount.<br><code>def min_coins(coins, amount):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def min_coins(coins, amount):<br>    dp = [float("inf")] * (amount + 1)<br>    dp[0] = 0<br>    for coin in coins:<br>        for x in range(coin, amount + 1):<br>            dp[x] = min(dp[x], dp[x - coin] + 1)<br>    return dp[amount] if dp[amount] != float("inf") else -1</code>'
+            },
+            {
+                level: 6, problem: 'Objective: Define a function that solves the knapsack problem for given weights and values.<br><code>def knapsack(weights, values, W):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def knapsack(weights, values, W):<br>    n = len(values)<br>    dp = [[0] * (W + 1) for _ in range(n + 1)]<br>    for i in range(1, n + 1):<br>        for w in range(W + 1):<br>            if weights[i-1] <= w:<br>                dp[i][w] = max(dp[i-1][w], dp[i-1][w-weights[i-1]] + values[i-1])<br>            else:<br>                dp[i][w] = dp[i-1][w]<br>    return dp[n][W]</code>'
+            },
+            {
+                level: 6, problem: 'Objective: Define a function that returns the length of the longest increasing subsequence in a given list.<br><code>def longest_increasing_subsequence(lst):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def longest_increasing_subsequence(lst):<br>    if not lst:<br>        return 0<br>    dp = [1] * len(lst)<br>    for i in range(len(lst)):<br>        for j in range(i):<br>            if lst[i] > lst[j]:<br>                dp[i] = max(dp[i], dp[j] + 1)<br>    return max(dp)</code>'
+            },
+            {
+                level: 6, problem: 'Objective: Define a function that returns the edit distance between two strings.<br><code>def edit_distance(s1, s2):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def edit_distance(s1, s2):<br>    m, n = len(s1), len(s2)<br>    dp = [[0] * (n + 1) for _ in range(m + 1)]<br>    for i in range(m + 1):<br>        for j in range(n + 1):<br>            if i == 0:<br>                dp[i][j] = j<br>            elif j == 0:<br>                dp[i][j] = i<br>            elif s1[i-1] == s2[j-1]:<br>                dp[i][j] = dp[i-1][j-1]<br>            else:<br>                dp[i][j] = 1 + min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])<br>    return dp[m][n]</code>'
+            },
+            {
+                level: 6, problem: 'Objective: Define a function that returns the maximum sum of a subarray using the Kadane\'s algorithm.<br><code>def max_subarray_sum(nums):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def max_subarray_sum(nums):<br>    max_so_far = nums[0]<br>    max_ending_here = nums[0]<br>    for i in range(1, len(nums)):<br>        max_ending_here = max(nums[i], max_ending_here + nums[i])<br>        max_so_far = max(max_so_far, max_ending_here)<br>    return max_so_far</code>'
+            },
+            {
+                level: 6, problem: 'Objective: Define a function that finds the peak element in a given list.<br><code>def find_peak_element(nums):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def find_peak_element(nums):<br>    left, right = 0, len(nums) - 1<br>    while left < right:<br>        mid = (left + right) // 2<br>        if nums[mid] < nums[mid + 1]:<br>            left = mid + 1<br>        else:<br>            right = mid<br>    return left</code>'
+            },
+            {
+                level: 6, problem: 'Objective: Define a function that returns the elements of a matrix in spiral order.<br><code>def spiral_order(matrix):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def spiral_order(matrix):<br>    res = []<br>    while matrix:<br>        res += matrix.pop(0)<br>        if matrix and matrix[0]:<br>            for row in matrix:<br>                res.append(row.pop())<br>        if matrix:<br>            res += matrix.pop()[::-1]<br>        if matrix and matrix[0]:<br>            for row in matrix[::-1]:<br>                res.append(row.pop(0))<br>    return res</code>'
+            },
+            {
+                level: 6, problem: 'Objective: Define a function that solves the N-Queens problem and returns one solution.<br><code>def solve_n_queens(n):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def solve_n_queens(n):<br>    def is_valid(board, row, col):<br>        for i in range(row):<br>            if board[i] == col or abs(board[i] - col) == row - i:<br>                return False<br>        return True<br>    def solve(row, board):<br>        if row == n:<br>            result.append(board[:])<br>            return<br>        for col in range(n):<br>            if is_valid(board, row, col):<br>                board[row] = col<br>                solve(row + 1, board)<br>                board[row] = -1<br>    result = []<br>    solve(0, [-1] * n)<br>    return result[0] if result else []</code>'
+            },
+            {
+                level: 6, problem: 'Objective: Define a function that returns the longest common subsequence of two strings.<br><code>def longest_common_subsequence(s1, s2):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def longest_common_subsequence(s1, s2):<br>    m, n = len(s1), len(s2)<br>    dp = [[""] * (n + 1) for _ in range(m + 1)]<br>    for i in range(1, m + 1):<br>        for j in range(1, n + 1):<br>            if s1[i-1] == s2[j-1]:<br>                dp[i][j] = dp[i-1][j-1] + s1[i-1]<br>            else:<br>                dp[i][j] = max(dp[i-1][j], dp[i][j-1], key=len)<br>    return dp[m][n]</code>'
+            },
+            {
+                level: 6, problem: 'Objective: Define a function that returns the minimum path sum from top left to bottom right of a grid.<br><code>def min_path_sum(grid):<br>    # Fix the code<br>    pass</code>',
+                solution: '<code>def min_path_sum(grid):<br>    m, n = len(grid), len(grid[0])<br>    for i in range(1, m):<br>        grid[i][0] += grid[i-1][0]<br>    for j in range(1, n):<br>        grid[0][j] += grid[0][j-1]<br>    for i in range(1, m):<br>        for j in range(1, n):<br>            grid[i][j] += min(grid[i-1][j], grid[i][j-1])<br>    return grid[m-1][n-1]</code>'
+            }
+
+        ];
+
+        let currentProblem = null;
+
+        function showRandomProblem() {
+            const randomIndex = Math.floor(Math.random() * problems.length);
+            currentProblem = problems[randomIndex];
+            document.getElementById('problem-container').innerHTML = `<h2>Level ${currentProblem.level}</h2><p>${currentProblem.problem}</p>`;
+            document.getElementById('solution-button').style.display = 'inline-block';
+        }
+
+        function showSolution() {
+            if (currentProblem) {
+                document.getElementById('problem-container').innerHTML += `<h3>Solution</h3><p>${currentProblem.solution}</p>`;
+                document.getElementById('solution-button').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
