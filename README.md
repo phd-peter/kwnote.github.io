@@ -1,4 +1,166 @@
-# [Minimal Mistakes Jekyll theme](https://mmistakes.github.io/minimal-mistakes/)
+# PDF translator
+
+## 코드파일
+
+My-code 밑에 pdf-translator-1, -2, -3으로 3개가 있음.
+
+### pdf-translator-1
+
+#### 하는일
+
+*  PDF파일을 불러와서, Japaneses를 OCR처리한다 using Tesseract. 
+*  페이지를 저장한다
+*  일본어 특성상, 한 글자씩 OCR처리됨. 그런데 그러면 번역이 안됨. 그래서 y좌표가 비슷한 것들(tolerance사용)을 1개로 묶었다.
+*  한 글자 한 글자를 포함해서 y좌표를 묶음에따라, x좌표가 여러개가 있게될텐데. 맨 앞에 있는 x좌표를 대표해서 지정하게 한다.
+*  "text"에 공백이 발생함.
+
+#### output json 파일
+
+```json
+    {
+        "page": 2,
+        "y": 375,
+        "text": "に 仕上 げ 、 合 理性 と 美 し さ を 兼ね",
+        "x": 1851
+    },
+```
+
+### pdf-translator-2
+
+#### 하는일
+
+*  output.json 파일을 불러와서, GPT 모델을 통해 번역을 수행한다.
+
+*  openai의 최신화된 코드를 chatgpt가 몰라서 조금 고생을 했다. 
+
+1. 시스템환경변수를 편집하여 api키를 OPENAI_API_KEY라고 저장해놓았다. 이는 보안을 위해 쓸모가 있는듯.
+
+```python
+import os
+from openai import OpenAI
+
+# Load the API key from environment variables
+api_key = os.getenv('OPENAI_API_KEY')
+
+# Validate API key
+if not api_key:
+    raise ValueError("API key not found. Please set 'OPENAI_API_KEY' as an environment variable.")
+
+# Initialize the OpenAI client
+client = OpenAI(api_key=api_key)
+
+# Chat model and system setup
+model = "gpt-3.5-turbo"
+
+
+```
+
+2.  chat을 불러오는 함수가 최신화되었다. `client.chat.completions.create()` 를 써야한다
+
+```python
+        response = client.chat.completions.create(
+            model=model,
+            messages=[
+                    {"role": "system", "content": f"You are a translator that translates {source_lang} to {target_lang}."},
+                    {"role": "user", "content": text}
+            ],
+            max_tokens=1500,  # 출력 크기 조정
+            temperature=0.3  # Use 0 for deterministic results
+        )
+
+```
+
+3.  응답을 받는 함수가 최신화되었다. `response.choices[0].message.content` 를 써야한다.
+
+```python
+        # Extract and display the translated text
+        translated_text = response.choices[0].message.content
+        return translated_text
+```
+
+#### translated_output json 파일
+
+```json
+    {
+        "page": 3,
+        "y": 600,
+        "text": "い生産システムです。",
+        "x": 219,
+        "translated_text": "It is a production system."
+    },
+```
+
+
+
+gpt모델의 문제인지.. 이런내용도 나온다
+
+```json
+    {
+        "page": 3,
+        "y": 614,
+        "text": "ササラー孔明け",
+        "x": 881,
+        "translated_text": "I'm sorry, but the phrase you provided does not seem to be in Japanese. Could you please provide more context or clarify the phrase so I can assist you with the translation?"
+    },
+```
+
+근데 o1-mini에게 물어봐도 잘 몰라하는거같다. -> The Japanese phrase **「ササラー孔明け」** can be translated into English as:**"The Dawn of Sasara Koumei"**
+
+deepL에게 물어봐도 잘 몰라한다. -> Sasara pitting
+
+
+
+### pdf-translator-3
+
+#### 하는일
+
+*  translated_output.json 파일을 불러와서, input_pdf에다가 덮어씌운다.
+
+*  덮어씌울때 original japanese 단어가 있으니까.. 그 위에 하얀색 박스를 덧입힌후에 씌운다.
+
+*  pdf의 가로세로가 개판나서 결국 망했다.
+
+#### 결과파일
+
+![에러이미지](images\error-2024-12-20.png)
+
+
+
+
+
+## 현재 상황
+
+번역하려고하는 그게 일본어임.. 그래서 개판남. (일본어는 단어단위가 아니고 문장단위고. gpt가 해석이 잘 안되나봄)
+
+model = "GPT-3.5-turbo"
+
+```json
+{
+        "page": 3,
+        "y": 614,
+        "text": "ササラー孔明け",
+        "x": 881,
+        "translated_text": "I'm sorry, but the phrase you provided does not seem to be in Japanese. Could you please provide more context or clarify the phrase so I can assist you with the translation?"
+    },
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## [Minimal Mistakes Jekyll theme](https://mmistakes.github.io/minimal-mistakes/)
 
 [![LICENSE](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/mmistakes/minimal-mistakes/master/LICENSE)
 [![Jekyll](https://img.shields.io/badge/jekyll-%3E%3D%203.7-blue.svg)](https://jekyllrb.com/)
