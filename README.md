@@ -122,7 +122,7 @@ deepL에게 물어봐도 잘 몰라한다. -> Sasara pitting
 
 #### 결과파일
 
-![에러이미지](images\error-2024-12-20.png)
+![에러이미지](images/error-2024-12-20.png)
 
 
 
