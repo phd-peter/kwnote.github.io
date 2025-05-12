@@ -25,12 +25,12 @@ def clean_and_markdown(text):
     return '\n'.join(result_lines)
 
 # 텍스트 불러오기
-with open('untitled-3.md', 'r', encoding='utf-8') as f:
+with open('142024.md', 'r', encoding='utf-8') as f:
     raw_text = f.read()
 
 # 변환 실행
 md_text = clean_and_markdown(raw_text)
 
 # Markdown 파일로 저장
-with open('output.md', 'w', encoding='utf-8') as f:
+with open('142024.md', 'w', encoding='utf-8') as f:
     f.write(md_text)

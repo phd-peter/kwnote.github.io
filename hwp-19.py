@@ -6,6 +6,10 @@ from pyparsing import nestedExpr, Word, alphanums, Literal, ParserElement
 ParserElement.enablePackrat()
 
 def parse_over_expression(text):
+    if text.count('{') != text.count('}'):
+        print(f"Skipping malformed input: {text}")
+        return text  # 그대로 반환하거나, 기본값 반환
+
     # 중첩된 {}를 파싱하는 parser 정의
     brace_expr = nestedExpr('{', '}')
 
